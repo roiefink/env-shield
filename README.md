@@ -12,22 +12,61 @@ Env Shield is a powerful utility for managing and safeguarding your environment 
 - Supports various data types, including strings, numbers, JSON, ports, URLs, and emails.
 - Easily integrate into your project and enhance its reliability.
 
-**Usage Example**:
+**Custom Validators**:
+
+Env Shield is designed to be extensible, allowing you to define your own custom validators for environment variables. If you have specific validation requirements that go beyond the built-in validators, you can easily create your own validator functions.
+
+To create a custom validator, simply define a function with the following signature:
+
+```typescript
+(value: string) => any
+```
+
+Your custom validator should take a string as input (the environment variable value) and return any valid JavaScript value based on your validation logic.
+
+Here's an example of how you can define and use a custom validator:
 
 ```typescript
 import { EnvShield } from 'env-shield';
 
+// Define a custom validator for an imaginary environment variable 'CUSTOM_VAR'
+function customValidator(value: string) {
+    // Implement your custom validation logic here
+    if (value === 'valid') {
+        return true;
+    } else {
+        throw new Error('Custom validation failed');
+    }
+}
+
 const envShield = new EnvShield(process.env, {
-    API_KEY: { type: EnvVariableType.STR },
-    PORT: { type: EnvVariableType.PORT },
-    DATABASE_URL: { type: EnvVariableType.URL },
-    EMAIL: { type: EnvVariableType.EMAIL },
+    CUSTOM_VAR: customValidator,
+});
+
+const customVar = envShield.getVar('CUSTOM_VAR');
+```
+
+With custom validators, you have the flexibility to enforce your own validation rules and ensure that your environment variables meet your specific requirements.
+
+**Usage Example**:
+
+```typescript
+import { EnvShield, validators } from 'env-shield';
+
+const envShield = new EnvShield(process.env, {
+    API_KEY: validators.isString,
+    PORT: validators.isPort,
+    DATABASE_URL: validators.isUrl,
+    EMAIL: validators.isEmail,
+    // Add your custom validators here
+    CUSTOM_VAR: customValidator,
 });
 
 const apiKey = envShield.getVar('API_KEY');
 const port = envShield.getVar('PORT');
 const databaseUrl = envShield.getVar('DATABASE_URL');
 const email = envShield.getVar('EMAIL');
+const customVar = envShield.getVar('CUSTOM_VAR');
 
 // Now you can confidently use these variables with their expected types.
 ```

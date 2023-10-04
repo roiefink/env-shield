@@ -1,69 +1,55 @@
-import {EnvVariableType} from './types'
+import {VALIDATION_ERRORS} from './errors'
 
-export const isValidUrl = (url: string) => {
+export const isUrl = (url: string) => {
     try {
         new URL(url);
         return url;
     } catch (error) {
-        throw new Error(`${url} is Invalid url`);
+        throw new Error(VALIDATION_ERRORS.INVALID_URL(url));
     }
 }
 
 
-function isValidPort(port: string) {
+export const isPort = (port: string) => {
     const portNumber = parseInt(port, 10);
     if (!isNaN(portNumber) && portNumber >= 1 && portNumber <= 65535) {
         return portNumber
     }
 
-    throw new Error(`${port} is Invalid port`);
+    throw new Error(VALIDATION_ERRORS.INVALID_PORT(port));
 
 }
 
-function isValidJSON(jsonString: string) {
+export const isJSON = (jsonString: string) => {
     try {
         return JSON.parse(jsonString);
     } catch (error) {
-        throw new Error(`${jsonString} is Invalid json`);
+        throw new Error(VALIDATION_ERRORS.INVALID_JSON(jsonString));
     }
 }
 
 
-function isValidEmail(email: string) {
+export const isEmail = (email: string) => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (!emailRegex.test(email)) {
-        throw new Error(`${email} is Invalid email`);
+        throw new Error(VALIDATION_ERRORS.INVALID_EMAIL(email));
     }
     return email
 }
 
-function isValidStringNumber(stringNumber: string) {
+export const isNumber = (stringNumber: string) => {
     const number = parseFloat(stringNumber);
     if (!isNaN(number)) {
         return number;
     } else {
-        throw new Error(`${stringNumber} is Invalid number`);
+        throw new Error(VALIDATION_ERRORS.INVALID_NUMBER(stringNumber));
     }
 }
 
-function isValidString(str: string) {
+export const isString = (str: string) => {
     return str
 }
 
-
-const validatorMapper = {
-    [EnvVariableType.JSON]: isValidJSON,
-    [EnvVariableType.NUMBER]: isValidStringNumber,
-    [EnvVariableType.STR]: isValidString,
-    [EnvVariableType.PORT]: isValidPort,
-    [EnvVariableType.URL]: isValidUrl,
-    [EnvVariableType.EMAIL]: isValidEmail
-}
-
-
-export const validateAndParse = (type: EnvVariableType, value: string) => {
-    return validatorMapper[type](value)
-}
 
 
 
