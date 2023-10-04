@@ -56,7 +56,7 @@ import { EnvShield, validators } from 'env-shield';
 const envShield = new EnvShield(process.env, {
     API_KEY: validators.isString,
     PORT: validators.isPort,
-    DATABASE_URL: validators.isUrl,
+    API_URL: validators.isUrl,
     EMAIL: validators.isEmail,
     // Add your custom validators here
     CUSTOM_VAR: customValidator,
@@ -64,7 +64,7 @@ const envShield = new EnvShield(process.env, {
 
 const apiKey = envShield.getVar('API_KEY');
 const port = envShield.getVar('PORT');
-const databaseUrl = envShield.getVar('DATABASE_URL');
+const apiUrl = envShield.getVar('API_URL');
 const email = envShield.getVar('EMAIL');
 const customVar = envShield.getVar('CUSTOM_VAR');
 
