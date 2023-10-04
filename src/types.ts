@@ -18,7 +18,6 @@ export type EnvVariableTypeMapper = {
 
 export interface EnvShieldVariable {
     type: EnvVariableType
-    required?: boolean
 }
 
 export type EnvShieldObject = {

@@ -9,7 +9,7 @@ export class EnvShield<T extends EnvShieldObject> {
         this.envVariables = {} as Record<keyof T, any>;
 
         for (const envVarName in envShieldObject) {
-            const {type, required} = envShieldObject[env]
+            const {type} = envShieldObject[env]
             const varValue = env[envVarName]
             if (!varValue) {
                 throw new Error(`Missing env var ${envVarName}`)
