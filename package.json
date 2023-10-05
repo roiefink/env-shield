@@ -1,12 +1,15 @@
 {
   "name": "env-shield",
   "version": "1.0.0",
-  "description": "",
+  "description": "A user-friendly utility for validating and parsing environment variables effortlessly.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && tsc",
     "prepublish": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {

@@ -9,10 +9,24 @@ export const isUrl = (url: string) => {
     }
 }
 
+export const isDatabaseUrl = (url: string) => {
+    const connectionStringRegex = /^(\w+):\/\/([A-Za-z0-9-_.]+):([A-Za-z0-9-_.]+)@([A-Za-z0-9-_.]+)(?::\d{1,5})?\/([A-Za-z0-9-_.]+)(?:\?[\w\W]+)?$/;
+
+    if (!connectionStringRegex.test(url)) {
+        throw new Error(VALIDATION_ERRORS.INVALID_CONNECTION_STRING(url));
+    }
+    
+    //TODO Parse the url and return object
+
+    return url
+}
+
 
 export const isPort = (port: string) => {
     const portNumber = parseInt(port, 10);
-    if (!isNaN(portNumber) && portNumber >= 1 && portNumber <= 65535) {
+    const isValidPort = !isNaN(portNumber) && portNumber >= 1 && portNumber <= 65535
+    
+    if (isValidPort) {
         return portNumber
     }
 
@@ -31,9 +45,11 @@ export const isJSON = (jsonString: string) => {
 
 export const isEmail = (email: string) => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    
     if (!emailRegex.test(email)) {
         throw new Error(VALIDATION_ERRORS.INVALID_EMAIL(email));
     }
+    
     return email
 }
 

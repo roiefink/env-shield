@@ -32,8 +32,8 @@ import { EnvShield } from 'env-shield';
 // Define a custom validator for an imaginary environment variable 'CUSTOM_VAR'
 function customValidator(value: string) {
     // Implement your custom validation logic here
-    if (value === 'valid') {
-        return true;
+    if (value === 'validValue') {
+        return value;
     } else {
         throw new Error('Custom validation failed');
     }
@@ -51,13 +51,14 @@ With custom validators, you have the flexibility to enforce your own validation 
 **Usage Example**:
 
 ```typescript
-import { EnvShield, validators } from 'env-shield';
+import { EnvShield, isString, isPort, isUrl, isEmail, isDatabaseUrl } from 'env-shield';
 
-const envShield = new EnvShield(process.env, {
-    API_KEY: validators.isString,
-    PORT: validators.isPort,
-    API_URL: validators.isUrl,
-    EMAIL: validators.isEmail,
+const envShield = new EnvShield({
+    API_KEY: isString,
+    PORT: isPort,
+    API_URL: isUrl,
+    EMAIL: isEmail,
+    DB_URL: isDatabaseUrl,
     // Add your custom validators here
     CUSTOM_VAR: customValidator,
 });
