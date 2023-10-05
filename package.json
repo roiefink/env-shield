@@ -1,6 +1,6 @@
 {
   "name": "env-shield",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A user-friendly utility for validating and parsing environment variables effortlessly.",
   "scripts": {
     "test": "jest",
