@@ -1,3 +1,3 @@
 type EnvShieldValidator = (value: string) => any;
 
-export type EnvShieldObject = Record<string, EnvShieldValidator>
+export type EnvShieldObject = Record<string, EnvShieldValidator>;
