@@ -1,10 +1,17 @@
 
----
-**Description**:
+# EnvShield
 
-Env Shield is a powerful utility for managing and safeguarding your environment variables in JavaScript and TypeScript projects. With Env Shield, you can precisely define the environment variables you expect to receive and specify their data types.
+EnvShield is a powerful utility for managing and safeguarding your environment variables in JavaScript and TypeScript projects. With EnvShield, you can precisely define the environment variables you expect to receive and specify their data types.
 
-**Key Features**:
+## Installation
+
+To start using EnvShield in your projects, simply install it via npm or yarn:
+
+```
+npm install env-shield
+```
+
+## Key Features
 
 - Define expected environment variables and their types using a simple configuration.
 - Automatically validate and parse environment variables, ensuring they meet your criteria.
@@ -12,9 +19,9 @@ Env Shield is a powerful utility for managing and safeguarding your environment 
 - Supports various data types, including strings, numbers, JSON, ports, URLs, and emails.
 - Easily integrate into your project and enhance its reliability.
 
-**Custom Validators**:
+## Custom Validators
 
-Env Shield is designed to be extensible, allowing you to define your own custom validators for environment variables. If you have specific validation requirements that go beyond the built-in validators, you can easily create your own validator functions.
+EnvShield is designed to be extensible, allowing you to define your own custom validators for environment variables. If you have specific validation requirements that go beyond the built-in validators, you can easily create your own validator functions.
 
 To create a custom validator, simply define a function with the following signature:
 
@@ -48,7 +55,7 @@ const customVar = envShield.getVar('CUSTOM_VAR');
 
 With custom validators, you have the flexibility to enforce your own validation rules and ensure that your environment variables meet your specific requirements.
 
-**Usage Example**:
+## Usage Example
 
 ```typescript
 import { EnvShield, isString, isPort, isUrl, isEmail, isDatabaseUrl } from 'env-shield';
@@ -72,16 +79,8 @@ const customVar = envShield.getVar('CUSTOM_VAR');
 // Now you can confidently use these variables with their expected types.
 ```
 
-**Get Started**:
+## Contributions
 
-To start using Env Shield in your projects, simply install it via npm or yarn:
-
-```
-npm install env-shield
-```
-
-**Contributions**:
-
-We welcome contributions from the community. Feel free to submit issues, pull requests, or suggestions to help make Env Shield even better.
+We welcome contributions from the community. Feel free to submit issues, pull requests, or suggestions to help make EnvShield even better.
 
 ---
